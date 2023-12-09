@@ -39,37 +39,30 @@ public class SwaggerConfig {
         .useDefaultResponseMessages(false)//
         .securitySchemes(Collections.singletonList(apiKey()))
         .securityContexts(Collections.singletonList(securityContext()))
-        .tags(new Tag("users", "Operations about users"))//
+        .tags(new Tag("Books", "Details about book project"))//
         .genericModelSubstitutes(Optional.class);
 
   }
 
   private ApiInfo metadata() {
     return new ApiInfoBuilder()//
-        .title("JSON Web Token Authentication API")//
-        .description("This is a sample JWT authentication service. You can find out more about JWT at [https://jwt.io/](https://jwt.io/). For this sample, you can use the `admin` or `client` users (password: admin and client respectively) to test the authorization filters. Once you have successfully logged in and obtained the token, you should click on the right top button `Authorize` and introduce it with the prefix \"Bearer \".")//
-        .version("1.0.0")//
-        .license("MIT License").licenseUrl("http://opensource.org/licenses/MIT")//
-        .contact(new Contact(null, null, "mauriurraco@gmail.com"))//
+        .title("Apni API company founded in 2017 at GLA University, Mathurra")//
+        .description("Two Google developer created this project one of them is Vivek Bhardwaj and second is SSY")
+            .version("4567")//
+        .license("GLA University, Mathura").licenseUrl("www.gla.ac.in")//
+        .contact(new Contact("Vivek", null, "vivekfarzi@gmail.com"))//
         .build();
   }
-  
+
   private ApiKey apiKey() {
     return new ApiKey("Authorization", "Authorization", "header");
   }
 
   private SecurityContext securityContext() {
     return SecurityContext.builder()
-        .securityReferences(defaultAuth())
-        .forPaths(PathSelectors.any())
+         .forPaths(PathSelectors.any())
         .build();
   }
 
-  private List<SecurityReference> defaultAuth() {
-    AuthorizationScope authorizationScope = new AuthorizationScope("global", "accessEverything");
-    AuthorizationScope[] authorizationScopes = new AuthorizationScope[1];
-    authorizationScopes[0] = authorizationScope;
-    return Arrays.asList(new SecurityReference("Authorization", authorizationScopes));
-  }
 
 }
